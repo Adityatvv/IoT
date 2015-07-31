@@ -3,20 +3,17 @@
   <head>
    <center><h2>IoT Class Project</h2></center>
     <title>IoT Class Project </title>
-    
-    <!-- CSS-->    
     <style>
       #map-canvas {
-        width: 500px;
+        width: 600px;
         height: 400px;
       }
       p{
         align: right;
       }
     </style>
-    
-    <!-- EXTERNAL LIBS-->    
     <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!-- EXTERNAL LIBS-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['bar']}]}"></script>
     <script src="https://www.google.com/jsapi"></script>
@@ -24,6 +21,7 @@
 
     <!-- EXAMPLE SCRIPT -->
     <script>
+
       // onload callback
       function drawChart() {
 
@@ -80,9 +78,8 @@
 
       // call drawChart once google charts is loaded
       google.setOnLoadCallback(drawChart);
+
     </script>
-    
-    <!-- MAP Script-->    
     <script>
       function initialize() {
         %for item in rows:
@@ -112,15 +109,59 @@
     </script>
   </head>
   <body bgcolor="#E6E6FA">
-    <center>
+  <h3>
+    <h3> Project Description</h3>
+    <p> The Project was done in three phases, which helps in understanding the weather. Example Everyday morning we wil get the temperature details in a text message
+        and also we get exact temperature and light in the perticular location when mouseover on the marker. To visualise all the data stream and getting the trends of
+        the data through Bar graph</p>
+    <code><ul>
+    <li> Map locating all Sensors with Light and Temperature values on Mouse Over  </li>
+    <li> Bar Chart for temperature and Light</li>
+    <li> Twilio Messaging</li>
+    </ul></code>
+    <h4>Project Setup</h4>
+    <p> Raspberry Pi is connected to the temperature and photo resistor sensors. The output data from devie and streamed to data.sparkfun.com which later
+        fetched based on the graph or map requirment from class stream, which was continuosly updated by whole class. </p>
     <h3> Map locating all Sensors with Light and Temperature values on Mouse Over</h3>
     <p> The Map marks the user locations according to the latitude and longitudes of class stream with temperature and light values on mouse over. To fetch the data I selected
         latest 100 hundrend entries of the current day from stream in json</p>
-    <div id="map-canvas"></div>
+    <center><div id="map-canvas"></div></center>
     <h3> Bar Chart for temperature and Light</h3>
     <p> The Bar Chart displays the values of temperature and light in the form of horizantal bars. On MouseOver it will display the information of the bar in tooltip.
     As shown in the graph the Vertical Axis defines the TimeStamp values and Horizantal Axes defines the Light and Temerature values</p>
-    <div id="chart" style="width:100%;"></div>
+    <center><div id="chart" style="width:600px; height:400px;"></div></center>
+    <h3> Twilio Messaging </h3>
+    <p> Everyday early morning we will get a message regarding the temperature and light details from raspberry pi to our mobile through twilio api, which helps
+        in getting an idea of outside wheather which helps in so many ways to prepare when we go outside e.g., Dressing, Packing bags etc., The details of the message  text accroding
+        to the temperature is shown in below table</p>
+<center>
+<table style="width:600px;" border=1>
+  <th>
+  Temperature Range in Celsisus</th>
+   <th>Text Message</th>
+
+  <tr>
+    <td>Below 0</td>
+    <td>Very Cold</td>
+  </tr>
+  <tr>
+    <td>Above 0 and Below 15</td>
+    <td>Cold</td>
+  </tr>
+  <tr>
+    <td>15 degree to 25 degree</td>
+    <td>Moderate</td>
+  </tr>
+  <tr>
+    <td>25 degree to 30 degree</td>
+    <td>Sunny</td>
+  </tr>
+  <tr>
+    <td>Above 30</td>
+    <td>Hot</td>
+  </tr>
+</table>
+    <img src="/static/twil_img.png" alt="Twilio Messages" style="width:250px; height:400px;"/>
     </center>
   </body>
 </html>
